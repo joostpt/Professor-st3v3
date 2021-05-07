@@ -102,6 +102,465 @@
         "parameters": []
       },
       "parameters": []
+    },
+    "/api/users/register": {
+      "post": {
+        "summary": "",
+        "operationId": "post-api-users-register",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          }
+        },
+        "parameters": [],
+        "security": [
+          {
+            "Bearer token": []
+          }
+        ]
+      }
+    },
+    "/api/users/tokens": {
+      "post": {
+        "summary": "",
+        "operationId": "post-api-users-tokens",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "token"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE1ODc5MTI2OTg5ODYsImlhdCI6MTU4NzkyMDIyOH0.E9oDnlXb4Bw6Kr4672BwNdav-51p_qOs58shQWrfkog"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "email": "bubba@goesfast.ca",
+                    "password": "nascar123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer token": []
+          }
+        ]
+      }
+    },
+    "/api/movies": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "uniqueItems": true,
+                      "minItems": 1,
+                      "items": {
+                        "required": [
+                          "_id",
+                          "title",
+                          "year",
+                          "owner"
+                        ],
+                        "properties": {
+                          "_id": {
+                            "type": "number"
+                          },
+                          "title": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "year": {
+                            "type": "number"
+                          },
+                          "owner": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": [
+                        {
+                          "_id": 1587912695511,
+                          "title": "Alien",
+                          "year": 1979,
+                          "owner": 1587912698986
+                        },
+                        {
+                          "_id": 1587921091646,
+                          "title": "Avatar",
+                          "year": 2009,
+                          "owner": 1587912698986
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": [
+                        {
+                          "_id": 0,
+                          "title": "string",
+                          "year": 0,
+                          "owner": 0
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "operationId": "get-api-movies",
+        "security": [
+          {
+            "Bearer token": []
+          }
+        ]
+      },
+      "post": {
+        "summary": "",
+        "operationId": "post-api-movies",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "number"
+                        },
+                        "title": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "year": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "_id",
+                        "title",
+                        "year"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "_id": 1587921293849,
+                        "title": "Avatar",
+                        "year": 2009
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": {
+                        "_id": 0,
+                        "title": "string",
+                        "year": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "year": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "title",
+                  "year"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "title": "Some movie name",
+                    "year": 1999
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "title": "string",
+                    "year": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer token": []
+          }
+        ]
+      }
+    },
+    "/api/movies/{id}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "_id": {
+                          "type": "number"
+                        },
+                        "title": {
+                          "type": "string",
+                          "minLength": 1
+                        },
+                        "year": {
+                          "type": "number"
+                        },
+                        "owner": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "_id",
+                        "title",
+                        "year",
+                        "owner"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "data": {
+                        "_id": 1587912695511,
+                        "title": "Alien",
+                        "year": 1979,
+                        "owner": 1587912698986
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "data": {
+                        "_id": 0,
+                        "title": "string",
+                        "year": 0,
+                        "owner": 0
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "operationId": "get-api-movies-:id",
+        "security": [
+          {
+            "Bearer token": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "id",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "",
+        "operationId": "delete-api-movies-id",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "_id"
+                    ]
+                  }
+                },
+                "required": [
+                  "data"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "data": {
+                      "_id": 1587921293849
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "data": {
+                      "_id": 1587921293849
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer token": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -155,6 +614,53 @@
         "name": "MyUniqueApiKey",
         "type": "apiKey",
         "in": "header"
+      },
+      "Bearer token": {
+        "name": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE1ODc5MTI2OTg5ODYsImlhdCI6MTU4NzkyMDIyOH0.E9oDnlXb4Bw6Kr4672BwNdav-51p_qOs58shQWrfkog",
+        "type": "apiKey",
+        "in": "header"
+      }
+    },
+    "responses": {
+      "Error": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "message": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "message"
+                  ]
+                }
+              },
+              "required": [
+                "error"
+              ],
+              "x-examples": {
+                "example-1": {
+                  "error": {
+                    "code": 111,
+                    "message": "Not gonna do it."
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
