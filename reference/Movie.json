@@ -1,0 +1,166 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Movie",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "STATUS": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  },
+                  "required": [
+                    "STATUS"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "STATUS": "Good to go!"
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "STATUS": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "",
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "number"
+                        },
+                        "message": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "code",
+                        "message"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "error"
+                  ],
+                  "x-examples": {
+                    "example-1": {
+                      "error": {
+                        "code": 999,
+                        "message": "Invalid API key"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "error": {
+                        "code": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-api",
+        "parameters": []
+      },
+      "parameters": []
+    }
+  },
+  "components": {
+    "schemas": {
+      "Movie": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "_id": {
+                "type": "number"
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "year": {
+                "type": "number"
+              },
+              "owner": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "_id",
+              "title",
+              "year",
+              "owner"
+            ]
+          }
+        },
+        "required": [
+          "data"
+        ],
+        "x-examples": {
+          "example-1": {
+            "data": {
+              "_id": 1587912695511,
+              "title": "Alien",
+              "year": 1979,
+              "owner": 1587912698986
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "x-api-key": {
+        "name": "MyUniqueApiKey",
+        "type": "apiKey",
+        "in": "header"
+      }
+    }
+  },
+  "security": [
+    {
+      "x-api-key": []
+    }
+  ]
+}
