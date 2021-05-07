@@ -40,7 +40,7 @@
                 "examples": {
                   "example-1": {
                     "value": {
-                      "STATUS": "string"
+                      "STATUS": "Good to go!"
                     }
                   }
                 }
@@ -88,8 +88,8 @@
                   "example-1": {
                     "value": {
                       "error": {
-                        "code": 0,
-                        "message": "string"
+                        "code": 999,
+                        "message": "Invalid API key"
                       }
                     }
                   }
@@ -119,18 +119,41 @@
           "content": {
             "application/json": {
               "schema": {
+                "description": "",
                 "type": "object",
-                "properties": {}
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "password": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "email",
+                  "password"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "email": "bubba@goesfast.ca",
+                    "password": "nascar123"
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "email": "bubba@goesfast.ca",
+                    "password": "nascar123"
+                  }
+                }
               }
             }
           }
         },
-        "parameters": [],
-        "security": [
-          {
-            "Bearer token": []
-          }
-        ]
+        "parameters": []
       }
     },
     "/api/users/tokens": {
@@ -164,6 +187,15 @@
                   ],
                   "x-examples": {
                     "example-1": {
+                      "data": {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE1ODc5MTI2OTg5ODYsImlhdCI6MTU4NzkyMDIyOH0.E9oDnlXb4Bw6Kr4672BwNdav-51p_qOs58shQWrfkog"
+                      }
+                    }
+                  }
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
                       "data": {
                         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE1ODc5MTI2OTg5ODYsImlhdCI6MTU4NzkyMDIyOH0.E9oDnlXb4Bw6Kr4672BwNdav-51p_qOs58shQWrfkog"
                       }
@@ -203,15 +235,18 @@
                     "password": "nascar123"
                   }
                 }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "email": "bubba@goesfast.ca",
+                    "password": "nascar123"
+                  }
+                }
               }
             }
           }
-        },
-        "security": [
-          {
-            "Bearer token": []
-          }
-        ]
+        }
       }
     },
     "/api/movies": {
@@ -283,10 +318,16 @@
                     "value": {
                       "data": [
                         {
-                          "_id": 0,
-                          "title": "string",
-                          "year": 0,
-                          "owner": 0
+                          "_id": 1587912695511,
+                          "title": "Alien",
+                          "year": 1979,
+                          "owner": 1587912698986
+                        },
+                        {
+                          "_id": 1587921091646,
+                          "title": "Avatar",
+                          "year": 2009,
+                          "owner": 1587912698986
                         }
                       ]
                     }
@@ -356,9 +397,9 @@
                   "example-1": {
                     "value": {
                       "data": {
-                        "_id": 0,
-                        "title": "string",
-                        "year": 0
+                        "_id": 1587921293849,
+                        "title": "Avatar",
+                        "year": 2009
                       }
                     }
                   }
@@ -399,8 +440,8 @@
               "examples": {
                 "example-1": {
                   "value": {
-                    "title": "string",
-                    "year": 0
+                    "title": "Avatar",
+                    "year": 2009
                   }
                 }
               }
@@ -470,10 +511,10 @@
                   "example-1": {
                     "value": {
                       "data": {
-                        "_id": 0,
-                        "title": "string",
-                        "year": 0,
-                        "owner": 0
+                        "_id": 1587912695511,
+                        "title": "Alien",
+                        "year": 1979,
+                        "owner": 1587912698986
                       }
                     }
                   }
@@ -652,6 +693,16 @@
               ],
               "x-examples": {
                 "example-1": {
+                  "error": {
+                    "code": 111,
+                    "message": "Not gonna do it."
+                  }
+                }
+              }
+            },
+            "examples": {
+              "example-1": {
+                "value": {
                   "error": {
                     "code": 111,
                     "message": "Not gonna do it."
